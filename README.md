@@ -1,4 +1,4 @@
-# 100daysofdata
+# 100 Days of Data Visualization
 
 ## Project Proposal
 
@@ -16,7 +16,9 @@ I'll also keep a running list of interesting datasets and data visualization ins
 
 ## Interesting Datasets
 
-
++ [NYC Civilian Complains Review Board](https://data.cityofnewyork.us/Public-Safety/Civilian-Complaint-Review-Board-CCRB-Allegations-C/xyq2-jjkn)
 
 ## Inspiration
 
++ [NYTimes Coronavirus Tracking](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html)
+    + Particularly notable here is the representation of data anomalies in their bar charts. The solution is simple: the use of a different color for days in which there was an anomaly in how the data was reported, with an accompanying and (easily accessibly) key with a link to a textual description of the anomaly. Love it. 
