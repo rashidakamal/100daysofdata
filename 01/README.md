@@ -6,7 +6,7 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
 
 ## Day 1: Python + Illustrator Output
 
-![Histogram chart showing distribution of the number days it took to close allegations before the CCRB.](output/final.png)
+![Histogram chart showing distribution of the number days it took to close allegations before the CCRB.](output/final-updated.png)
 
 * Median is a helpful measure when the data is skewed or has outliers as it is ["robust against outliers"](https://www.clinfo.eu/mean-median/). In this case, I included both mean and median, as they were not wildly different from one another. 
 
