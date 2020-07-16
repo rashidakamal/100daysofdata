@@ -6,6 +6,7 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
 
 ## Day 1: Python + Illustrator Output
 
+![Histogram chart showing distribution of the number days it took to close allegations before the CCRB.](output/final.png)
 
 ## Day 2: D3
 
