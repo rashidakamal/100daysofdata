@@ -10,7 +10,7 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
 
 * Median is a helpful measure when the data is skewed or has outliers as it is ["robust against outliers"](https://www.clinfo.eu/mean-median/). In this case, I included both mean and median, as they were not wildly different from one another. 
 
-## Day 2: D3
+## Day 2: D3 / HTML / CSS
 
 
 ## Day 3: After Effects
