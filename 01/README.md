@@ -12,5 +12,7 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
 
 ## Day 2: D3 / HTML / CSS
 
++ [Observable for Jupyter Users](https://observablehq.com/@observablehq/observable-for-jupyter-users)
+    + I probably won't use Observable just yet, but I'm interested to see if this can become a helpful part of my workflow for future "Day 2" endeavors. 
 
 ## Day 3: After Effects

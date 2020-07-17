@@ -1,0 +1,61 @@
+<html>
+
+<head>
+
+    <style>
+
+
+    </style>
+
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+
+</head>
+
+<body></body>
+<script>
+
+    // code from https://observablehq.com/@d3/radial-stacked-bar-chart
+    // thank you mike bostock
+    let width = 975; 
+    let height = width; 
+    
+    let innerRadius = 180;
+    let outerRadius = Math.min(width, height) / 2;
+
+    let data = d3.csvParse(await FileAttachment("test.csv").text(), (d, _, columns) => {
+
+        let total = 0;
+        for (let i = 1; i < columns.length; ++i) total += d[columns[i]] = +d[columns[i]];
+        d.total = total;
+
+        return d;
+
+        });
+
+    let legend = g => g.append("g")
+        .selectAll("g")
+        .data(data.columns.slice(1).reverse())
+        .join("g")
+            .attr("transform", (d, i) => `translate(-40,${(i - (data.columns.length - 1) / 2) * 20})`)
+            .call(g => g.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .attr("fill", z))
+            .call(g => g.append("text")
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", "0.35em")
+                .text(d => d));
+
+    console.log("here");
+
+
+        
+
+    
+
+</script>
+
+
+</html>
