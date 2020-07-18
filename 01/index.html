@@ -12,7 +12,9 @@
 
 </head>
 
-<body></body>
+<body>
+    <svg width=975 height=975></svg>
+</body>
 <script>
 
     // code from https://observablehq.com/@d3/radial-stacked-bar-chart
@@ -22,16 +24,26 @@
     
     let innerRadius = 180;
     let outerRadius = Math.min(width, height) / 2;
+    
+    // https://stackoverflow.com/questions/49599691/how-to-load-data-from-a-csv-file-in-d3-v5
+    // sadly, it is too hard to actually use mike bostock's code.
+    // Also, this didn't worked with csvParse, which is what exists in the D3 documentation. csv works great though.... 
+    // 
 
-    let data = d3.csvParse(await FileAttachment("test.csv").text(), (d, _, columns) => {
+    async function makeCharts(){
 
-        let total = 0;
-        for (let i = 1; i < columns.length; ++i) total += d[columns[i]] = +d[columns[i]];
-        d.total = total;
+        const data = await d3.csv("test.csv", (d, _, columns) => {
 
-        return d;
+            let total = 0;
+            for (let i = 1; i < columns.length; ++i) total += d[columns[i]] = +d[columns[i]];
+            d.total = total;
 
-        });
+            return d;
+
+        }); 
+
+        console.log(data.columns);
+
 
     let legend = g => g.append("g")
         .selectAll("g")
@@ -48,9 +60,133 @@
                 .attr("dy", "0.35em")
                 .text(d => d));
 
-    console.log("here");
+
+    let yAxis = g => g
+        .attr("text-anchor", "middle")
+        .call(g => g.append("text")
+            .attr("y", d => -y(y.ticks(5).pop()))
+            .attr("dy", "-1em")
+            .text("Population"))
+        .call(g => g.selectAll("g")
+        .data(y.ticks(5).slice(1))
+        .join("g")
+            .attr("fill", "none")
+            .call(g => g.append("circle")
+                .attr("stroke", "#000")
+                .attr("stroke-opacity", 0.5)
+                .attr("r", y))
+            .call(g => g.append("text")
+                .attr("y", d => -y(d))
+                .attr("dy", "0.35em")
+                .attr("stroke", "#fff")
+                .attr("stroke-width", 5)
+                .text(y.tickFormat(5, "s"))
+            .clone(true)
+                .attr("fill", "#000")
+                .attr("stroke", "none"))); 
+
+    let xAxis = g => g
+        .attr("text-anchor", "middle")
+        .call(g => g.selectAll("g")
+        .data(data)
+        .join("g")
+            .attr("transform", d => `
+            rotate(${((x(d.State) + x.bandwidth() / 2) * 180 / Math.PI - 90)})
+            translate(${innerRadius},0)
+            `)
+            .call(g => g.append("line")
+                .attr("x2", -5)
+                .attr("stroke", "#000"))
+            .call(g => g.append("text")
+                .attr("transform", d => (x(d.State) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI
+                    ? "rotate(90)translate(0,16)"
+                    : "rotate(-90)translate(0,-9)")
+                .text(d => d.State)));
+
+    let x = d3.scaleBand()
+        .domain(data.map(d => d.State))
+        .range([0, 2 * Math.PI])
+        .align(0);
+
+        // This scale maintains area proportionality of radial bars!
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.total)])
+        .range([innerRadius * innerRadius, outerRadius * outerRadius]);
+
+    let z = d3.scaleOrdinal()
+        .domain(data.columns.slice(1))
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]); 
+
+    let arc = d3.arc()
+        .innerRadius(d => y(d[0]))
+        .outerRadius(d => y(d[1]))
+        .startAngle(d => x(d.data.State))
+        .endAngle(d => x(d.data.State) + x.bandwidth())
+        .padAngle(0.01)
+        .padRadius(innerRadius);
 
 
+    const svg = d3.select("svg")
+        .attr("viewBox", `${-width / 2} ${-height / 2} ${width} ${height}`)
+        .style("width", "100%")
+        .style("height", "auto")
+        .style("font", "10px sans-serif");
+
+        svg.append("g")
+        .selectAll("g")
+        .data(d3.stack().keys(data.columns.slice(1))(data))
+        .join("g")
+            .attr("fill", d => z(d.key))
+        .selectAll("path")
+        .data(d => d)
+        .join("path")
+            .attr("d", arc);
+
+        svg.append("g")
+            .call(xAxis);
+
+        svg.append("g")
+            .call(yAxis);
+
+        svg.append("g")
+            .call(legend);
+
+        svg.node();
+
+    }
+
+    makeCharts();
+
+
+
+
+    // // object? 
+    //     const svg = d3.select(DOM.svg(width, height))
+    //         .attr("viewBox", `${-width / 2} ${-height / 2} ${width} ${height}`)
+    //         .style("width", "100%")
+    //         .style("height", "auto")
+    //         .style("font", "10px sans-serif");
+
+    //     svg.append("g")
+    //     .selectAll("g")
+    //     .data(d3.stack().keys(data.columns.slice(1))(data))
+    //     .join("g")
+    //         .attr("fill", d => z(d.key))
+    //     .selectAll("path")
+    //     .data(d => d)
+    //     .join("path")
+    //         .attr("d", arc);
+
+    //     svg.append("g")
+    //         .call(xAxis);
+
+    //     svg.append("g")
+    //         .call(yAxis);
+
+    //     svg.append("g")
+    //         .call(legend);
+
+    //     svg.node();
         
 
     
