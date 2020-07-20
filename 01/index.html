@@ -26,7 +26,7 @@
     let outerRadius = Math.min(width, height) / 2;
     
     // https://stackoverflow.com/questions/49599691/how-to-load-data-from-a-csv-file-in-d3-v5
-    // sadly, it is too hard to actually use mike bostock's code.
+    // sadly, it is too hard to actually use mike bostock's code. (Okay, you can use it, but you have to remove elements from Observable's standard library that have snuck in there.)
     // Also, this didn't worked with csvParse, which is what exists in the D3 documentation. csv works great though.... 
     // 
 
@@ -42,7 +42,7 @@
 
         }); 
 
-        console.log(data.columns);
+        console.log(data);
 
 
     let legend = g => g.append("g")
@@ -132,9 +132,9 @@
         .style("height", "auto")
         .style("font", "10px sans-serif");
 
-        svg.append("g")
+    svg.append("g")
         .selectAll("g")
-        .data(d3.stack().keys(data.columns.slice(1))(data))
+        .data(d3.stack().keys(data.columns.slice(1)) (data))
         .join("g")
             .attr("fill", d => z(d.key))
         .selectAll("path")
@@ -142,16 +142,16 @@
         .join("path")
             .attr("d", arc);
 
-        svg.append("g")
+    svg.append("g")
             .call(xAxis);
 
-        svg.append("g")
+    svg.append("g")
             .call(yAxis);
 
-        svg.append("g")
+    svg.append("g")
             .call(legend);
 
-        svg.node();
+    svg.node();
 
     }
 
