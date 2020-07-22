@@ -19,7 +19,7 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
 + [Changes between D3v4 & D3v5](https://github.com/d3/d3/blob/master/CHANGES.md): everything I used to know is obsolete (sort of).
 + [Async in D3v5](https://stackoverflow.com/questions/49599691/how-to-load-data-from-a-csv-file-in-d3-v5)
 + [Documentation for d3-shape](https://github.com/d3/d3-shape/blob/v1.3.7/README.md#stack)
-+ [D3v5 Observable: Radial Stackeed Chart](https://observablehq.com/@d3/radial-stacked-bar-chart)
++ [D3v5 Observable: Radial Stacked Chart](https://observablehq.com/@d3/radial-stacked-bar-chart)
 
 This attempt at fancy D3 has been humbling! Not sure why I decided to start the series with a radial stack bar chart (cough, cough, hubris), but I ran into a quite a bit of trouble getting D3v5 code up and running (or even recreating the sample code locally). I wasn't experiencing an explicit error (beyond the bars not appearing), so I imagine the is a very simple, very stupid syntax/semi-colon/spelling error that lurks somewhere. 
 
