@@ -28,3 +28,4 @@ I'll also keep a running list of interesting datasets and data visualization ins
 + [NYTimes: Driving Safety, in Fits and Starts](https://archive.nytimes.com/www.nytimes.com/interactive/2012/09/17/science/driving-safety-in-fits-and-starts.html)
     + Weird, wild "connected scatterplot." [D3 example here.](https://observablehq.com/@d3/connected-scatterplot)
 + [D3 Example: Spike Map](https://observablehq.com/@d3/spike-map)
++ [D3 Example: Scatterplot Matrix](https://observablehq.com/@d3/scatterplot-matrix)

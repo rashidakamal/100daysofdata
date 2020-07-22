@@ -14,5 +14,10 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
 
 + [Observable for Jupyter Users](https://observablehq.com/@observablehq/observable-for-jupyter-users)
     + I probably won't use Observable just yet, but I'm interested to see if this can become a helpful part of my workflow for future "Day 2" endeavors. 
+    + **Observable’s not JavaScript** – learning this the hard way. 
+    + [Observable: Charting with Vega-Lite](https://observablehq.com/@observablehq/vega-lite)
++ [Changes between D3v4 & D3v5](https://github.com/d3/d3/blob/master/CHANGES.md): everything I used to know is obsolete (sort of).
+
+![Radial Stacked bar chart showing the number of allegations by type.](output/radial_stacked_chart.png)
 
 ## Day 3: After Effects

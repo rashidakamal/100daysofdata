@@ -1,197 +1,141 @@
-<html>
-
+<!DOCTYPE html>
 <head>
 
-    <style>
-
-
-    </style>
-
-    <script src="https://d3js.org/d3.v5.js"></script>
-
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="d3-scale-radial.js"></script>
 
 </head>
 
 <body>
-    <svg width=975 height=975></svg>
-</body>
+<svg width="960" height="960" font-family="sans-serif" font-size="10"></svg>
 <script>
 
-    // code from https://observablehq.com/@d3/radial-stacked-bar-chart
-    // thank you mike bostock
-    let width = 975; 
-    let height = width; 
-    
-    let innerRadius = 180;
-    let outerRadius = Math.min(width, height) / 2;
-    
-    // https://stackoverflow.com/questions/49599691/how-to-load-data-from-a-csv-file-in-d3-v5
-    // sadly, it is too hard to actually use mike bostock's code. (Okay, you can use it, but you have to remove elements from Observable's standard library that have snuck in there.)
-    // Also, this didn't worked with csvParse, which is what exists in the D3 documentation. csv works great though.... 
-    // 
+// source: https://bl.ocks.org/mbostock/3686329aa6e1f5938df8eef12ec353fe
+let svg = d3.select("svg");
 
-    async function makeCharts(){
-
-        const data = await d3.csv("test.csv", (d, _, columns) => {
-
-            let total = 0;
-            for (let i = 1; i < columns.length; ++i) total += d[columns[i]] = +d[columns[i]];
-            d.total = total;
-
-            return d;
-
-        }); 
-
-        console.log(data);
+let width = +svg.attr("width"),
+    height = +svg.attr("height");
 
 
-    let legend = g => g.append("g")
-        .selectAll("g")
-        .data(data.columns.slice(1).reverse())
-        .join("g")
-            .attr("transform", (d, i) => `translate(-40,${(i - (data.columns.length - 1) / 2) * 20})`)
-            .call(g => g.append("rect")
-                .attr("width", 18)
-                .attr("height", 18)
-                .attr("fill", z))
-            .call(g => g.append("text")
-                .attr("x", 24)
-                .attr("y", 9)
-                .attr("dy", "0.35em")
-                .text(d => d));
+let innerRadius = 200,
+    outerRadius = Math.min(width, height) * 0.45,
+    g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height * 0.5 + ")");
 
+let x = d3.scaleBand()
+    .range([0, 2 * Math.PI])
+    .align(0);
 
-    let yAxis = g => g
-        .attr("text-anchor", "middle")
-        .call(g => g.append("text")
-            .attr("y", d => -y(y.ticks(5).pop()))
-            .attr("dy", "-1em")
-            .text("Population"))
-        .call(g => g.selectAll("g")
-        .data(y.ticks(5).slice(1))
-        .join("g")
-            .attr("fill", "none")
-            .call(g => g.append("circle")
-                .attr("stroke", "#000")
-                .attr("stroke-opacity", 0.5)
-                .attr("r", y))
-            .call(g => g.append("text")
-                .attr("y", d => -y(d))
-                .attr("dy", "0.35em")
-                .attr("stroke", "#fff")
-                .attr("stroke-width", 5)
-                .text(y.tickFormat(5, "s"))
-            .clone(true)
-                .attr("fill", "#000")
-                .attr("stroke", "none"))); 
+var y = d3.scaleRadial()
+    .range([innerRadius, outerRadius]);
 
-    let xAxis = g => g
-        .attr("text-anchor", "middle")
-        .call(g => g.selectAll("g")
-        .data(data)
-        .join("g")
-            .attr("transform", d => `
-            rotate(${((x(d.State) + x.bandwidth() / 2) * 180 / Math.PI - 90)})
-            translate(${innerRadius},0)
-            `)
-            .call(g => g.append("line")
-                .attr("x2", -5)
-                .attr("stroke", "#000"))
-            .call(g => g.append("text")
-                .attr("transform", d => (x(d.State) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI
-                    ? "rotate(90)translate(0,16)"
-                    : "rotate(-90)translate(0,-9)")
-                .text(d => d.State)));
+var z = d3.scaleOrdinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
-    let x = d3.scaleBand()
-        .domain(data.map(d => d.State))
-        .range([0, 2 * Math.PI])
-        .align(0);
+d3.csv("flipped.csv", function(d, i, columns) {
+  for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+  d.total = t;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
 
-        // This scale maintains area proportionality of radial bars!
-    const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.total)])
-        .range([innerRadius * innerRadius, outerRadius * outerRadius]);
+  weave(data, function(a, b) { return b[data.columns[6]] -  a[data.columns[6]]; });
+  x.domain(data.map(function(d) { return d["Allegation Disposition"]; }));
+  y.domain([0, d3.max(data, function(d) { return d.total; })]);
+  z.domain(data.columns.slice(1));
 
-    let z = d3.scaleOrdinal()
-        .domain(data.columns.slice(1))
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]); 
+  g.append("g")
+    .selectAll("g")
+    .data(d3.stack().keys(data.columns.slice(1))(data))
+    .enter().append("g")
+      .attr("fill", function(d) { return z(d.key); })
+    .selectAll("path")
+    .data(function(d) { return d; })
+    .enter().append("path")
+      .attr("d", d3.arc()
+          .innerRadius(function(d) { return y(d[0]); })
+          .outerRadius(function(d) { return y(d[1]); })
+          .startAngle(function(d) { return x(d.data["Allegation Disposition"]); })
+          .endAngle(function(d) { return x(d.data["Allegation Disposition"]) + x.bandwidth(); })
+          .padAngle(0.02)
+          .padRadius(innerRadius));
 
-    let arc = d3.arc()
-        .innerRadius(d => y(d[0]))
-        .outerRadius(d => y(d[1]))
-        .startAngle(d => x(d.data.State))
-        .endAngle(d => x(d.data.State) + x.bandwidth())
-        .padAngle(0.01)
-        .padRadius(innerRadius);
+  var label = g.append("g")
+    .selectAll("g")
+    .data(data)
+    .enter().append("g")
+      .attr("text-anchor", "left")
+      // .attr("transform", function(d) { return "rotate(" + x(d["Allegation Disposition"]) * 180 / Math.PI - 90 + ")translate(" + innerRadius + ",0)"; });
+      .attr("transform", function(d) { return "rotate(" + ((x(d["Allegation Disposition"]) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")translate(" + innerRadius + ",0)"; });
 
+  label.append("line")
+      .attr("x2", -5)
+      .attr("stroke", "#a1a1a1");
 
-    const svg = d3.select("svg")
-        .attr("viewBox", `${-width / 2} ${-height / 2} ${width} ${height}`)
-        .style("width", "100%")
-        .style("height", "auto")
-        .style("font", "10px sans-serif");
+  label.append("text")
+      .attr("transform", function(d) { return (x(d["Allegation Disposition"]) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI ? "rotate(0)translate(10,5)" : "rotate(0)translate(10,5)"; })
+      .text(function(d) { return d["Allegation Disposition"]; });
 
-    svg.append("g")
-        .selectAll("g")
-        .data(d3.stack().keys(data.columns.slice(1)) (data))
-        .join("g")
-            .attr("fill", d => z(d.key))
-        .selectAll("path")
-        .data(d => d)
-        .join("path")
-            .attr("d", arc);
+  var yAxis = g.append("g")
+      .attr("text-anchor", "end");
 
-    svg.append("g")
-            .call(xAxis);
+  var yTick = yAxis
+    .selectAll("g")
+    .data(y.ticks(10).slice(1))
+    .enter().append("g");
 
-    svg.append("g")
-            .call(yAxis);
+  yTick.append("circle")
+      .attr("fill", "none")
+      .attr("stroke", "#000")
+      .attr("stroke-opacity", 0.5)
+      .attr("r", y);
 
-    svg.append("g")
-            .call(legend);
+  yTick.append("text")
+      .attr("x", -6)
+      .attr("y", function(d) { return -y(d); })
+      .attr("dy", "0.35em")
+      .attr("fill", "none")
+      .attr("stroke", "#fff")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-width", 3)
+      .text(y.tickFormat(10, "s"));
 
-    svg.node();
+  yTick.append("text")
+      .attr("x", -6)
+      .attr("y", function(d) { return -y(d); })
+      .attr("dy", "0.35em")
+      .text(y.tickFormat(10, "s"));
 
-    }
+  yAxis.append("text")
+      .attr("x", -200)
+      .attr("y", function(d) { return -y(y.ticks(10).pop()); })
+      .attr("dy", "-1.5em")
+      .attr("font-size", "18")
+      .text("Number of Allegations");
 
-    makeCharts();
+  var legend = g.append("g")
+    .selectAll("g")
+    .data(data.columns.slice(1).reverse())
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(-40," + (i - (data.columns.length - 1) / 2) * 20 + ")"; });
 
+  legend.append("rect")
+      .attr("width", 18)
+      .attr("height", 18)
+      .attr("fill", z);
 
+  legend.append("text")
+      .attr("x", 24)
+      .attr("y", 9)
+      .attr("dy", "0.35em")
+      .text(function(d) { return d; });
+});
 
-
-    // // object? 
-    //     const svg = d3.select(DOM.svg(width, height))
-    //         .attr("viewBox", `${-width / 2} ${-height / 2} ${width} ${height}`)
-    //         .style("width", "100%")
-    //         .style("height", "auto")
-    //         .style("font", "10px sans-serif");
-
-    //     svg.append("g")
-    //     .selectAll("g")
-    //     .data(d3.stack().keys(data.columns.slice(1))(data))
-    //     .join("g")
-    //         .attr("fill", d => z(d.key))
-    //     .selectAll("path")
-    //     .data(d => d)
-    //     .join("path")
-    //         .attr("d", arc);
-
-    //     svg.append("g")
-    //         .call(xAxis);
-
-    //     svg.append("g")
-    //         .call(yAxis);
-
-    //     svg.append("g")
-    //         .call(legend);
-
-    //     svg.node();
-        
-
-    
+function weave(array, compare) {
+  var i = -1, j, n = array.sort(compare).length, weave = new Array(n);
+  while (++i < n) weave[i] = array[(j = i << 1) >= n ? (n - i << 1) - 1 : j];
+  while (--n >= 0) array[n] = weave[n];
+}
 
 </script>
-
-
-</html>
+</body>
