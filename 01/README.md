@@ -18,6 +18,14 @@ Original data source [here](https://data.cityofnewyork.us/Public-Safety/Civilian
     + [Observable: Charting with Vega-Lite](https://observablehq.com/@observablehq/vega-lite)
 + [Changes between D3v4 & D3v5](https://github.com/d3/d3/blob/master/CHANGES.md): everything I used to know is obsolete (sort of).
 
+This attempt at fancy D3 has been humbling! Not sure why I decided to start the series with a radial stack bar chart (cough, cough, hubris), but I ran into a quite a bit of trouble getting D3v5 code up and running (or even recreating the sample code locally). I wasn't experiencing an explicit error (beyond the bars not appearing), so I imagine the is a very simple, very stupid syntax/semi-colon/spelling error that lurks somewhere. 
+
+Instead, I switched to playing around with some d3v4 sample code for the results shown below: 
+
 ![Radial Stacked bar chart showing the number of allegations by type.](output/radial_stacked_chart.png)
+
+There are about a million ways this chart could be improved -- and I would emphasize that THIS IS NOT A FINISHED CHART. However, for the sake of the PURPOSE of this "100 Days" endeavor, I think it's time to move on.
+
+For my next d3 chart, I do want to work with d3v5, but I think I'm going to first try to make the SIMPLEST bar charts or line charts for the next few datasets. \~LESSON LEARNED \~. 
 
 ## Day 3: After Effects
