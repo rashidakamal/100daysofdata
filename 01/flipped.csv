@@ -1,44 +1,44 @@
-Allegation Disposition,Abuse of Authority,Discourtesy,Force,OMN,Offensive Language,Total
-Administratively Closed,39.0,13.0,468.0,1.0,6.0,527.0
-Alleged Victim Unavailable,2502.0,665.0,3228.0,0.0,105.0,6500.0
-Alleged Victim Uncooperative,7541.0,2173.0,7476.0,4.0,387.0,17581.0
-Closed - Pending Litigation,87.0,10.0,108.0,0.0,3.0,208.0
-Complainant Unavailable,7037.0,3464.0,7362.0,1.0,679.0,18543.0
-Complainant Uncooperative,38280.0,13716.0,20168.0,3.0,2448.0,74615.0
-Complaint Withdrawn,12372.0,5390.0,6372.0,6.0,837.0,24977.0
-Conciliated,0.0,0.0,0.0,0.0,1.0,1.0
-Duplicate - CCRB,26.0,14.0,34.0,0.0,4.0,78.0
-Exonerated,26264.0,1469.0,19999.0,5.0,10.0,47747.0
-IAB - Referral,6.0,0.0,0.0,0.0,0.0,6.0
-IAB - Staff Referral,19.0,1.0,10.0,1.0,0.0,31.0
-Mediated,2822.0,1266.0,352.0,0.0,139.0,4579.0
-Mediation Attempted,3199.0,1582.0,451.0,0.0,201.0,5433.0
-Miscellaneous,220.0,127.0,145.0,1.0,23.0,516.0
-Miscellaneous - Subject Resigned,404.0,163.0,298.0,9.0,32.0,906.0
-Miscellaneous - Subject Retired,714.0,270.0,329.0,5.0,43.0,1361.0
-Miscellaneous - Subject Terminated,36.0,21.0,42.0,0.0,4.0,103.0
-OCD - Staff Referral,2.0,3.0,4.0,3.0,0.0,12.0
-Officer(s) Unidentified,7201.0,2928.0,3710.0,6.0,497.0,14342.0
-Other Misconduct,4.0,0.0,1.0,4263.0,0.0,4268.0
-Other Misconduct (Charges),3.0,0.0,0.0,376.0,0.0,379.0
-Other Misconduct (Command Discipline),0.0,0.0,1.0,228.0,0.0,229.0
-Other Misconduct (Instruction),1.0,0.0,0.0,39.0,0.0,40.0
-Other Misconduct (No Rec.),3.0,0.0,0.0,1842.0,0.0,1845.0
-Other Misconduct (None),3.0,0.0,0.0,98.0,0.0,101.0
-Other Misconduct (Referral),0.0,0.0,0.0,95.0,0.0,95.0
-Other PD Unit - Staff Referral,1.0,0.0,0.0,0.0,0.0,1.0
-P E N D I N G,15.0,3.0,6.0,0.0,0.0,24.0
-Referral,1.0,1.0,2.0,0.0,0.0,4.0
-Substantiated (Charges),5117.0,824.0,1060.0,8.0,124.0,7133.0
-Substantiated (Command Discipline A),585.0,77.0,52.0,0.0,6.0,720.0
-Substantiated (Command Discipline B),426.0,49.0,84.0,0.0,9.0,568.0
-Substantiated (Command Discipline),1028.0,251.0,73.0,0.0,19.0,1371.0
-Substantiated (Command Lvl Instructions),67.0,28.0,5.0,0.0,1.0,101.0
-Substantiated (Formalized Training),606.0,88.0,32.0,0.0,9.0,735.0
-Substantiated (Instructions),289.0,84.0,14.0,0.0,8.0,395.0
-Substantiated (No Recommendations),92.0,9.0,11.0,2.0,0.0,114.0
-Unfounded,7361.0,5404.0,8366.0,6.0,1342.0,22479.0
-Unsubstantiated,23673.0,12621.0,10317.0,8.0,2076.0,48695.0
-Victim Unidentified,822.0,273.0,682.0,0.0,52.0,1829.0
-Witness Unavailable,8.0,3.0,3.0,0.0,0.0,14.0
-Witness Uncooperative,33.0,3.0,15.0,0.0,3.0,54.0
+Allegation Disposition,Abuse of Authority,Discourtesy,Force,OMN,Offensive Language
+Administratively Closed,39.0,13.0,468.0,1.0,6.0
+Alleged Victim Unavailable,2502.0,665.0,3228.0,0.0,105.0
+Alleged Victim Uncooperative,7541.0,2173.0,7476.0,4.0,387.0
+Closed - Pending Litigation,87.0,10.0,108.0,0.0,3.0
+Complainant Unavailable,7037.0,3464.0,7362.0,1.0,679.0
+Complainant Uncooperative,38280.0,13716.0,20168.0,3.0,2448.0
+Complaint Withdrawn,12372.0,5390.0,6372.0,6.0,837.0
+Conciliated,0.0,0.0,0.0,0.0,1.0
+Duplicate - CCRB,26.0,14.0,34.0,0.0,4.0
+Exonerated,26264.0,1469.0,19999.0,5.0,10.0
+IAB - Referral,6.0,0.0,0.0,0.0,0.0
+IAB - Staff Referral,19.0,1.0,10.0,1.0,0.0
+Mediated,2822.0,1266.0,352.0,0.0,139.0
+Mediation Attempted,3199.0,1582.0,451.0,0.0,201.0
+Miscellaneous,220.0,127.0,145.0,1.0,23.0
+Miscellaneous - Subject Resigned,404.0,163.0,298.0,9.0,32.0
+Miscellaneous - Subject Retired,714.0,270.0,329.0,5.0,43.0
+Miscellaneous - Subject Terminated,36.0,21.0,42.0,0.0,4.0
+OCD - Staff Referral,2.0,3.0,4.0,3.0,0.0
+Officer(s) Unidentified,7201.0,2928.0,3710.0,6.0,497.0
+Other Misconduct,4.0,0.0,1.0,4263.0,0.0
+Other Misconduct (Charges),3.0,0.0,0.0,376.0,0.0
+Other Misconduct (Command Discipline),0.0,0.0,1.0,228.0,0.0
+Other Misconduct (Instruction),1.0,0.0,0.0,39.0,0.0
+Other Misconduct (No Rec.),3.0,0.0,0.0,1842.0,0.0
+Other Misconduct (None),3.0,0.0,0.0,98.0,0.0
+Other Misconduct (Referral),0.0,0.0,0.0,95.0,0.0
+Other PD Unit - Staff Referral,1.0,0.0,0.0,0.0,0.0
+P E N D I N G,15.0,3.0,6.0,0.0,0.0
+Referral,1.0,1.0,2.0,0.0,0.0
+Substantiated (Charges),5117.0,824.0,1060.0,8.0,124.0
+Substantiated (Command Discipline A),585.0,77.0,52.0,0.0,6.0
+Substantiated (Command Discipline B),426.0,49.0,84.0,0.0,9.0
+Substantiated (Command Discipline),1028.0,251.0,73.0,0.0,19.0
+Substantiated (Command Lvl Instructions),67.0,28.0,5.0,0.0,1.0
+Substantiated (Formalized Training),606.0,88.0,32.0,0.0,9.0
+Substantiated (Instructions),289.0,84.0,14.0,0.0,8.0
+Substantiated (No Recommendations),92.0,9.0,11.0,2.0,0.0
+Unfounded,7361.0,5404.0,8366.0,6.0,1342.0
+Unsubstantiated,23673.0,12621.0,10317.0,8.0,2076.0
+Victim Unidentified,822.0,273.0,682.0,0.0,52.0
+Witness Unavailable,8.0,3.0,3.0,0.0,0.0
+Witness Uncooperative,33.0,3.0,15.0,0.0,3.0
