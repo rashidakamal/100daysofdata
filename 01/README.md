@@ -32,3 +32,7 @@ There are about a million ways this chart could be improved -- and I would empha
 For my next d3 chart, I do want to work with d3v5, but I think I'm going to first try to make the SIMPLEST bar charts or line charts for the next few datasets. \~LESSON LEARNED\~. 
 
 ## Day 3: After Effects
+
++ [AE: Animate Graphics with Data / JSON](https://helpx.adobe.com/after-effects/how-to/create-data-driven-animations.html)
++ [Youtube: Make easy bar graphs in After Effects](https://www.youtube.com/watch?v=K95AsDjlEiM)Involves dividing by pizel size of text elements such as a period. I don't love this method, but maybe there's some power to it. 
++ [Youtube: Creatively Using Text Animators in After Effects](https://youtu.be/plbsdkRhy8g)
