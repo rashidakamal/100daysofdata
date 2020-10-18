@@ -29,3 +29,18 @@ I'll also keep a running list of interesting datasets and data visualization ins
     + Weird, wild "connected scatterplot." [D3 example here.](https://observablehq.com/@d3/connected-scatterplot)
 + [D3 Example: Spike Map](https://observablehq.com/@d3/spike-map)
 + [D3 Example: Scatterplot Matrix](https://observablehq.com/@d3/scatterplot-matrix)
+
+## How-To's, Tutorials & Advice
+
++ [The Economist: Mistakes, we’ve drawn a few](https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368)
++ [The Pudding: How To's](https://pudding.cool/topics/#how)
++ [Critical GIS Bibliography](https://criticalgis.blogspot.com/p/critical-gis-bibliography.html)
++ [Center for Spatial Research: Tutorials](https://c4sr.columbia.edu/tutorials)
++ [Michael Kirsch's Points Unknown](https://pointsunknown.nyc/resources/)
++ [D3 in Action](https://livebook.manning.com/book/d3-js-in-action/table-of-contents/1)
++ [Datawrapper on Cartograms](https://blog.datawrapper.de/cartograms/)
++ [Observable Notebook on Grid Cartograms](https://observablehq.com/@severo/grid-cartograms)
+
+## Tools
+
++ [WSJ D3 Cartograms](https://github.com/WSJ/squaire)
